@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./ItemCard.css";
 
 const ItemCard = ({ item }) => {
+  const [imgSrc, setImgSrc] = useState("");
+
+  useEffect(() => {
+    try {
+      setImgSrc(item.volumeInfo.imageLinks.thumbnail);
+    } catch (err) {
+      console.log("error", err);
+    } // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="card">
       <span className="img_area">
-        <img
-          className="book_img"
-          src={item.volumeInfo.imageLinks.thumbnail}
-          alt="book_img"
-        />
+        <img className="book_img" src={imgSrc} alt="book_img" />
       </span>
       <span className="details">
         <b className="title">{item.volumeInfo.title}</b>
