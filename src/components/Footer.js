@@ -2,11 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div id="footer">
-      <h6 style={{ float: "left", margin: "10px", fontSize: "15px" }}>
-        {" "}
-        &copy; Books-API
-      </h6>
+    <div className="footer">
+      <h2>&copy; BooksBox</h2>
     </div>
   );
 };

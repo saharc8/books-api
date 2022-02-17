@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const Header = () => {
+const Header = ({ setResponse }) => {
+  const [values, setValues] = useState("javascript");
+
+  useEffect(() => {
+    values && runSearch(values);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [values]);
+
+  const runSearch = (values) => {
+    axios
+      .get(`https://www.googleapis.com/books/v1/volumes?q=${values}`)
+      .then((response) => {
+        setResponse(response.data);
+      })
+      .catch((err) => console.log("error", err));
+  };
+
   return (
-    <header id="head">
-      <div className="logo">
-        <span>Books-API</span>
-      </div>
-    </header>
+    <div className="header">
+      <span>
+        <h1>BooksBox</h1>
+        <h3>Find any book U want</h3>
+      </span>
+      <span>
+        <input
+          onChange={(e) => {
+            setValues(e.target.value);
+          }}
+          type="text"
+          className="search_input"
+          placeholder="Search..."
+          autoComplete="off"
+          autoFocus
+        />
+      </span>
+    </div>
   );
 };
 

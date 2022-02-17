@@ -1,18 +1,17 @@
+import React, { useState } from "react";
+import Header from "./components/Header";
+import Content from "./components/Content";
+import Footer from "./components/Footer";
 import "./App.css";
-import React from "react";
-import Layout from "./components/Layout";
-import Search from "./components/Search";
 
 const App = () => {
+  const [response, setResponse] = useState({});
+
   return (
     <div className="App">
-      <Layout>
-        <div className="main">
-          <div className="search-container">
-            <Search />
-          </div>
-        </div>
-      </Layout>
+      <Header setResponse={setResponse} className="header" />
+      <Content response={response} className="content" />
+      <Footer className="footer" />
     </div>
   );
 };
