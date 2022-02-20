@@ -18,7 +18,9 @@ const ItemCard = ({ item }) => {
         <img className="book_img" src={imgSrc} alt="book_img" />
       </span>
       <span className="details">
-        <b className="title">{item.volumeInfo.title}</b>
+        <b className="title">
+          {item.volumeInfo.title ? item.volumeInfo.title : "book_title"}
+        </b>
         <br />
         <p className="desc">
           {item.volumeInfo.description

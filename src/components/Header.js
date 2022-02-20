@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 
 const Header = ({ setResponse }) => {
   const [values, setValues] = useState("javascript");
@@ -10,11 +9,9 @@ const Header = ({ setResponse }) => {
   }, [values]);
 
   const runSearch = (values) => {
-    axios
-      .get(`https://www.googleapis.com/books/v1/volumes?q=${values}`)
-      .then((response) => {
-        setResponse(response.data);
-      })
+    fetch(`https://www.googleapis.com/books/v1/volumes?q=${values}`)
+      .then((response) => response.json())
+      .then((data) => setResponse(data))
       .catch((err) => console.log("error", err));
   };
 
